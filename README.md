@@ -33,45 +33,39 @@ limitations under the License.
 
 [![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
 
-> Generate pseudorandom numbers drawn from a [uniform][@stdlib/random/base/uniform] distribution.
+> Generate pseudorandom numbers drawn from a [continuous uniform][@stdlib/random/base/uniform] distribution.
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/random-uniform
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
-To use in Observable,
-
 ```javascript
-uniform = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/random-uniform@umd/browser.js' )
-```
-
-To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
-
-```javascript
-var uniform = require( 'path/to/vendor/umd/random-uniform/index.js' )
-```
-
-To include the bundle in a webpage,
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-uniform@umd/browser.js"></script>
-```
-
-If no recognized module system is present, access bundle contents via the global scope:
-
-```html
-<script type="text/javascript">
-(function () {
-    window.uniform;
-})();
-</script>
+var uniform = require( '@stdlib/random-uniform' );
 ```
 
 #### uniform( shape, a, b\[, options] )
 
-Returns an [ndarray][@stdlib/ndarray/ctor] containing pseudorandom numbers drawn from a [uniform][@stdlib/random/base/uniform] distribution.
+Returns an [ndarray][@stdlib/ndarray/ctor] containing pseudorandom numbers drawn from a [continuous uniform][@stdlib/random/base/uniform] distribution.
 
 ```javascript
 var arr = uniform( [ 3, 3 ], 0.0, 1.0 );
@@ -94,7 +88,7 @@ var array = require( '@stdlib/ndarray-array' );
 var a = array( [ [ [ 0.0 ] ], [ [ 10.0 ] ] ] );
 // returns <ndarray>
 
-var b = array( [ [ [ 10.0 ] ], [ [ 20.0 ] ] ] );
+var b = array( [ [ [ 1.0 ] ], [ [ 20.0 ] ] ] );
 // returns <ndarray>
 
 var shape = getShape( a );
@@ -139,13 +133,13 @@ var opts = {
 var arr = uniform( [ 3, 3 ], 0.0, 1.0, opts );
 // returns <ndarray>
 
-var dt = getDType( arr );
+var dt = String( getDType( arr ) );
 // returns 'generic'
 ```
 
 #### uniform.assign( a, b, out )
 
-Fills an [ndarray][@stdlib/ndarray/ctor] with pseudorandom numbers drawn from a [uniform][@stdlib/random/base/uniform] distribution.
+Fills an [ndarray][@stdlib/ndarray/ctor] with pseudorandom numbers drawn from a [continuous uniform][@stdlib/random/base/uniform] distribution.
 
 ```javascript
 var zeros = require( '@stdlib/ndarray-zeros' );
@@ -168,7 +162,7 @@ The method has the following parameters:
 
 #### uniform.factory( \[options] )
 
-Returns a function for generating pseudorandom numbers drawn from a [uniform][@stdlib/random/base/uniform] distribution.
+Returns a function for generating pseudorandom numbers drawn from a [continuous uniform][@stdlib/random/base/uniform] distribution.
 
 ```javascript
 var getShape = require( '@stdlib/ndarray-shape' );
@@ -358,15 +352,10 @@ var sz = random.byteLength;
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/ndarray-to-array@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-uniform@umd/browser.js"></script>
-<script type="text/javascript">
-(function () {
+```javascript
+var logEach = require( '@stdlib/console-log-each' );
+var ndarray2array = require( '@stdlib/ndarray-to-array' );
+var uniform = require( '@stdlib/random-uniform' );
 
 // Create a function for generating random arrays originating from the same state:
 var random = uniform.factory({
@@ -380,7 +369,7 @@ var x2 = random( [ 5 ], 0.0, 1.0 );
 var x3 = random( [ 5 ], 0.0, 1.0 );
 
 // Print the contents:
-logEach( '%f, %f, %f', toArray( x1 ), toArray( x2 ), toArray( x3 ) );
+logEach( '%f, %f, %f', ndarray2array( x1 ), ndarray2array( x2 ), ndarray2array( x3 ) );
 
 // Create another function for generating random arrays with the original state:
 random = uniform.factory({
@@ -392,16 +381,11 @@ random = uniform.factory({
 var x4 = random( [ 3, 5 ], 0.0, 1.0 );
 
 // Convert to a list of nested arrays:
-var arr = toArray( x4 );
+var arr = ndarray2array( x4 );
 
 // Print the contents:
 console.log( '' );
 logEach( '%f, %f, %f', arr[ 0 ], arr[ 1 ], arr[ 2 ] );
-
-})();
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -468,8 +452,8 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 
 -->
 
-[chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
+[chat-image]: https://img.shields.io/badge/zulip-join_chat-brightgreen.svg
+[chat-url]: https://stdlib.zulipchat.com
 
 [stdlib]: https://github.com/stdlib-js/stdlib
 
@@ -488,17 +472,17 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 
 [stdlib-license]: https://raw.githubusercontent.com/stdlib-js/random-uniform/main/LICENSE
 
-[@stdlib/random/base/uniform]: https://github.com/stdlib-js/random-base-uniform/tree/umd
+[@stdlib/random/base/uniform]: https://github.com/stdlib-js/random-base-uniform
 
-[@stdlib/array/uint32]: https://github.com/stdlib-js/array-uint32/tree/umd
+[@stdlib/array/uint32]: https://github.com/stdlib-js/array-uint32
 
-[@stdlib/ndarray/dtypes]: https://github.com/stdlib-js/ndarray-dtypes/tree/umd
+[@stdlib/ndarray/dtypes]: https://github.com/stdlib-js/ndarray-dtypes
 
-[@stdlib/ndarray/output-dtype-policies]: https://github.com/stdlib-js/ndarray-output-dtype-policies/tree/umd
+[@stdlib/ndarray/output-dtype-policies]: https://github.com/stdlib-js/ndarray-output-dtype-policies
 
-[@stdlib/ndarray/ctor]: https://github.com/stdlib-js/ndarray-ctor/tree/umd
+[@stdlib/ndarray/ctor]: https://github.com/stdlib-js/ndarray-ctor
 
-[@stdlib/ndarray/base/broadcast-shapes]: https://github.com/stdlib-js/ndarray-base-broadcast-shapes/tree/umd
+[@stdlib/ndarray/base/broadcast-shapes]: https://github.com/stdlib-js/ndarray-base-broadcast-shapes
 
 </section>
 
