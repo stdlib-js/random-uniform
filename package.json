@@ -1,7 +1,7 @@
 {
   "name": "@stdlib/random-uniform",
   "version": "0.0.0",
-  "description": "Generate pseudorandom numbers drawn from a uniform distribution.",
+  "description": "Generate pseudorandom numbers drawn from a continuous uniform distribution.",
   "license": "Apache-2.0",
   "author": {
     "name": "The Stdlib Authors",
@@ -69,6 +69,7 @@
     "@stdlib/ndarray-to-array": "^0.2.1",
     "@stdlib/ndarray-zeros": "^0.3.0",
     "@stdlib/random-base-minstd": "^0.2.1",
+    "@stdlib/string-format": "^0.2.2",
     "tape": "git+https://github.com/kgryte/tape.git#fix/globby",
     "istanbul": "^0.4.1",
     "tap-min": "git+https://github.com/Planeshifter/tap-min.git",
@@ -109,7 +110,9 @@
     "seedable",
     "ndarray",
     "multidimensional",
-    "array"
+    "array",
+    "vector",
+    "matrix"
   ],
   "funding": {
     "type": "opencollective",
