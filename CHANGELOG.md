@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-05-22)
+## Unreleased (2026-06-25)
 
 <section class="commits">
 
@@ -12,6 +12,7 @@
 
 <details>
 
+-   [`1977f92`](https://github.com/stdlib-js/stdlib/commit/1977f92944b56c40c27b23d74570f2958adc7a39) - **docs:** update documented default value for `submode` option [(#13106)](https://github.com/stdlib-js/stdlib/pull/13106) _(by Philipp Burckhardt)_
 -   [`795cdc0`](https://github.com/stdlib-js/stdlib/commit/795cdc007997c8a0db301e65e705a9237f5877f6) - **docs:** update related packages sections [(#12122)](https://github.com/stdlib-js/stdlib/pull/12122) _(by stdlib-bot)_
 
 </details>
@@ -19,6 +20,18 @@
 </section>
 
 <!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Philipp Burckhardt
+
+</section>
+
+<!-- /.contributors -->
 
 </section>
 
